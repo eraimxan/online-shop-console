@@ -3,23 +3,24 @@ import java.util.Scanner;
 
 class Product {
     private String name;
-    private double price;
+    private double cost;
     private int quantity;
     private String description;
 
-    public Product(String name, double price, int quantity, String description) {
+    public Product(String name, double cost, int quantity, String description) {
         this.name = name;
-        this.price = price;
+        this.cost = cost;
         this.quantity = quantity;
         this.description = description;
     }
 
     public String getName() {
+        
         return name;
     }
 
-    public double getPrice() {
-        return price;
+    public double getCost() {
+        return cost;
     }
 
     public int getQuantity() {
@@ -113,12 +114,12 @@ class OnlineShop {
     public void showProductList() {
         System.out.println("Product List:");
         for (Product product : products) {
-            System.out.println(product.getName() + " - $" + product.getPrice() + " - Quantity: " + product.getQuantity());
+            System.out.println(product.getName() + " - $" + product.getCost() + " - Quantity: " + product.getQuantity());
         }
     }
 
-    public void addProduct(String name, double price, int quantity, String description) {
-        Product product = new Product(name, price, quantity, description);
+    public void addProduct(String name, double cost, int quantity, String description) {
+        Product product = new Product(name, cost, quantity, description);
         products.add(product);
         System.out.println("Product added successfully!");
     }
@@ -134,7 +135,7 @@ class OnlineShop {
         Product product = findProductByName(productName);
 
         if (user != null && product != null) {
-            double totalCost = product.getPrice() * quantity;
+            double totalCost = product.getCost() * quantity;
             if (user.getBalance() >= totalCost && product.getQuantity() >= quantity) {
                 user.setBalance(user.getBalance() - totalCost);
                 product.setQuantity(product.getQuantity() - quantity);
@@ -250,14 +251,14 @@ public class Main {
                     System.out.print("Enter product name: ");
                     scanner.nextLine(); // Consume the newline character
                     String productName = scanner.nextLine();
-                    System.out.print("Enter product price: ");
-                    double productPrice = scanner.nextDouble();
+                    System.out.print("Enter product cost: ");
+                    double productCost = scanner.nextDouble();
                     System.out.print("Enter product quantity: ");
                     int productQuantity = scanner.nextInt();
                     scanner.nextLine(); // Consume the newline character
                     System.out.print("Enter product description: ");
                     String productDescription = scanner.nextLine();
-                    onlineShop.addProduct(productName, productPrice, productQuantity, productDescription);
+                    onlineShop.addProduct(productName, productCost, productQuantity, productDescription);
                     break;
                 case 3:
                     System.out.print("Enter user ID: ");
